@@ -749,10 +749,19 @@ class HomePage extends ConsumerWidget {
 ```
 
 > ✅ **Checkpoint 4.1** รันแอปด้วย `flutter run` (หรือกด F5 ใน VS Code) แล้วทดสอบกดปุ่ม "บันทึก" ที่สินค้าชิ้นใดก็ได้ ตรวจว่าตัวเลข ❤️ ที่ AppBar เพิ่มขึ้นถูกต้อง ถ่ายภาพหน้าจอแนบส่ง
+<img width="1190" height="942" alt="ภาพถ่ายหน้าจอ 2569-08-14 เวลา 15 49 06" src="https://github.com/user-attachments/assets/2f1de873-e00b-4b69-9f85-0d9372bd6598" />
 
 > ✅ **Checkpoint 4.2** เขียนตารางเปรียบเทียบสั้น ๆ ว่าตอนแปลงจาก Provider เป็น Riverpod ต้องเปลี่ยนอะไรบ้าง (เช่น `ChangeNotifier` → `StateNotifier`, `StatelessWidget` → `ConsumerWidget`, `context.watch` → `ref.watch`) อย่างน้อย 4 คู่เทียบ
 
----
+ตารางเปรียบเทียบการเปลี่ยนจาก **Provider** เป็น **Riverpod**:
+
+| ส่วนการทำงาน | Provider | Riverpod |
+| --- | --- | --- |
+| **การสร้าง Class เก็บ State** | `ChangeNotifier` | `StateNotifier<T>` |
+| **ชนิดของ Widget ใน UI** | `StatelessWidget` | `ConsumerWidget` |
+| **การดึงค่ามาแสดงผล (และฟังการอัปเดต)** | `context.watch<FavoritesModel>()` | `ref.watch(favoritesProvider)` |
+| **การเรียกใช้ฟังก์ชัน/เมธอด** | `context.read<FavoritesModel>()` | `ref.read(favoritesProvider.notifier)` |
+| **การครอบ Root ที่ `main.dart**` | `ChangeNotifierProvider` | `ProviderScope` |
 
 ## ส่วนที่ 5 (ทำด้วยตนเอง): ออกแบบฟีเจอร์เพิ่มด้วยตัวเอง
 
